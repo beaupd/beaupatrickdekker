@@ -1,5 +1,14 @@
+import Header from "../components/Header"
+
 const Page = () => {
-    return <>Home page</>
+    return (
+        <>
+            <Header />
+            <section>
+                About
+            </section>
+        </>
+    )
 }
 
 export default Page

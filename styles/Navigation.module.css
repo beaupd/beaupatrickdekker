@@ -1,0 +1,48 @@
+.nav {
+    position: fixed;
+    width: 100%;
+    left:0;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    height: 75px;
+    transition: .3s;
+}
+
+.nav.active {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    background: var(--light);
+}
+
+.nav header {
+    height: 100%;
+}
+
+.nav header img {
+    position: relative;
+    padding: 10px;
+    max-width:100%;
+    max-height:100%;
+}
+
+.nav ul {
+    margin-right: 10%;
+}
+
+.nav ul li {
+    padding: 15px 10px;
+    display: inline-block;
+}
+
+.nav ul li a {
+    font-size: 1.4em;
+    text-decoration: none;
+    color: var(--light);
+    transition: .3s;
+}
+
+.nav.active ul li a {
+    color: var(--dark);
+}

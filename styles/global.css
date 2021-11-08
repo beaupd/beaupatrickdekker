@@ -1,0 +1,19 @@
+:root {
+    --theme: #669BBC;
+    /* --theme2: #FDF0D5; */
+    --light: #FDF0D5;
+    --dark: #001514;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--dark);
+}
+
+html, body {
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    font-family: Nunito, sans-serif;
+}
