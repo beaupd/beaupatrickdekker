@@ -1,8 +1,11 @@
 :root {
-    --theme: #669BBC;
+    --theme: #780000;
+    --theme2: #C1121F;
     /* --theme2: #FDF0D5; */
-    --light: #FDF0D5;
-    --dark: #001514;
+    /* --light: #FDF0D5; */
+    --light: #ffffff;
+    --dark: #070B0D;
+    /* 080F0F */
 }
 
 * {

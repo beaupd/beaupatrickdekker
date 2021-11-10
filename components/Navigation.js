@@ -23,13 +23,15 @@ const Navigation = () => {
     return (
         <nav className={`${styles.nav} ${isActive ? styles.active : ""}`}>
             <header>
-                <a href="/">
-                    {isActive ? (
-                        <img src="/logo.png" />
-                    ) : (
-                        <img src="/logo_light.png" />
-                    )}
-                </a>
+                <div className={styles.logoWrapper}>
+                    <a href="/">
+                        {isActive ? (
+                            <img src="/logo.png" />
+                        ) : (
+                            <img src="/logo_light.png" />
+                        )}
+                    </a>
+                </div>
             </header>
 
             <ul>

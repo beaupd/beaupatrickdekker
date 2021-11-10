@@ -48,7 +48,7 @@ const Header = () => {
         
         function noise(ctx) {
             let len = buffer32.length - 1
-            while(len--) buffer32[len] = Math.random() < 0.5 ? 0 : 0xff0000ff>>0
+            while(len--) buffer32[len] = Math.random() < 0.5 ? 0 : 0xffffffff>>0
             ctx.putImageData(idata, 0, 0)
         }
 
