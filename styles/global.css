@@ -1,22 +1,15 @@
-:root {
-    --theme: #780000;
-    --theme2: #C1121F;
-    /* --theme2: #FDF0D5; */
-    /* --light: #FDF0D5; */
-    --light: #ffffff;
-    --dark: #070B0D;
-    /* 080F0F */
-}
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    color: var(--dark);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html, body {
-    text-rendering: geometricPrecision;
-    -webkit-font-smoothing: antialiased;
-    font-family: Nunito, sans-serif;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.active:after {
+    width: 100% !important;
+    
+}
+.active:before{
+    height: 100% !important;
 }
