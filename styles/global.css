@@ -5,19 +5,19 @@
 html, body {
     font-family: 'Work Sans', sans-serif;
     scroll-behavior: smooth;
+    
 }
 
 ::-webkit-scrollbar {
-    width: 9px;
+    width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #EEE5E9;
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #000306;
-    border:3.5px solid #EEE5E9;
+    background: #293E53;
     /* border-radius: 5px; */
     transition: .5s;
 }

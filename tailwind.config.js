@@ -15,12 +15,10 @@ module.exports = {
         "snowybg": "url('/snowy.jpg')",
         "snowybgSmall": "url('/snowy_mobile.jpg')"
       },
-      left: {
-        "-minus": "-10px"
-      },
-      bottom: {
-        "-minus": "-10px"
+      zIndex: {
+        "min": "-1"
       }
+
     },
   },
   variants: {
