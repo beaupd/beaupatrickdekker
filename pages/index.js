@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 
+
 const Page = () => {
 
     return (
@@ -21,25 +22,29 @@ const Page = () => {
                     <motion.button
                         initial={{ opacity: 0, y: "-100%" }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ ease: "easeOut", duration: 0.6 }}
+                        transition={{ ease: "easeOut", duration: 0.3 }}
                         className="text-light border-2 px-4 py-2 before:content[''] before:absolute relative before:left-1/2 before:top-1/2 before:w-0 before:h-0 before:transition-all before:duration-300 before:ease-in-out hover:before:w-full hover:before:h-full hover:before:left-0 hover:before:top-0 transition-all duration-300 ease-in-out before:bg-light border-light hover:text-dark before:z-min">
                         <a>Get into Contact!</a>
                     </motion.button>
                 </div>
             </section>
 
-            <section className="relative my-14">
-                <div className="container mx-auto w-2/3 relative after:border-b-4 after:content-[''] after:absolute before:absolute after:w-full before:h-full after:right-14 after:bottom-0 before:left-0 before:top-14 pt-10 pr-10 after:z-10 before:z-10 before:content-[''] before:border-l-4">
-                    <div className="pt-20 flex items-stretch h-96">
-                        <div className="bg-blue w-64 block relative rounded-tr-lg">
-                            <Image src="/beau_dekker.png" layout="fill" objectFit="cover" className="w-full h-full rounded-tr-lg" quality="100"/>
+            <section className="relative mt-14 mb-36">
+                <div className="container mx-auto w-3/4 lg:w-2/3 relative lg:after:border-b-4 lg:after:content-[''] lg:after:absolute lg:before:absolute lg:after:w-full lg:before:h-full lg:after:right-14 lg:after:bottom-0 lg:before:left-0 lg:before:top-14 pt-10 lg:pr-14 lg:after:z-10 lg:before:z-10 lg:before:content-[''] lg:before:border-l-4">
+                    <div className="pt-10 lg:pt-20 flex flex-col lg:flex-row h-120 lg:h-96">
+                        <div className="bg-blue h-full lg:w-64 block relative rounded-sm lg:rounded-none lg:rounded-tr-lg min-w-max flex-grow-0 lg:flex-shrink-0">
+                            <Image src="/beau_dekker.png" layout="fill" objectFit="cover" className="w-full h-full rounded-sm lg:rounded-none lg:rounded-tr-lg" quality="100" />
                         </div>
-                        <div className="p-5 flex-grow mr-36">
-                            <header>
-                                <h2 className="font-bold uppercase text-2xl">Who am I?</h2>
-                            </header>
-                            <p className="py-2">I am a "Junior" full stack developer.</p>
-                            <button className="text-dark border-2 px-4 py-2 mx-auto container mt-5  before:content[''] before:absolute relative before:left-1/2 before:top-1/2 before:w-0 before:h-0 before:transition-all before:duration-300 before:ease-in-out hover:before:w-full hover:before:h-full hover:before:left-0 hover:before:top-0 transition-all duration-300 ease-in-out before:bg-dark border-dark hover:text-light before:z-min">
+                        <div className="p-5 lg:mr-1/4 flex-grow-0">
+                            <div className="w-full">
+                                <header>
+                                    <h2 className="font-bold uppercase text-2xl">Who am I?</h2>
+                                </header>
+                                <p className="py-2 h-full w-full text-xs md:text-sm  xl:text-base 2xl:text-lg whitespace-normal">
+                                    I am a "Junior" full stack developer. I love developing anything web related. I dont like to define myself by the work I've done (maybe also because im a Junior developer but...). I define myself by the work I want to do. Skills can be taught, personality is inherent. I'm a quick learner and thats why I like to keep challenging myself with each project, and learn as much as possible.
+                                </p>
+                            </div>
+                            <button className="text-dark border-2 px-4 py-2 mx-auto container mt-2 xl:mt-5  before:content[''] before:absolute relative before:left-1/2 before:top-1/2 before:w-0 before:h-0 before:transition-all before:duration-300 before:ease-in-out hover:before:w-full hover:before:h-full hover:before:left-0 hover:before:top-0 transition-all duration-300 ease-in-out before:bg-dark border-dark hover:text-light before:z-min">
                                 More About me
                             </button>
                         </div>
@@ -47,16 +52,7 @@ const Page = () => {
                 </div>
             </section>
 
-
-            <section className="">
-                <div className="container mx-auto center w-1/2 m-10">
-                    <header className="flex items-center align-center">
-                        {/* <Image src="/logo.png" width="50" height="50" /> */}
-                        <h2 className="font-bold uppercase text-2xl">About this site</h2>
-                    </header>
-                    <p className="pt-5">this site is my portfolio</p>
-                </div>
-            </section>
+            <section className="h-screen"><br></br></section>
 
         </Layout >
     )

@@ -17,6 +17,15 @@ module.exports = {
       },
       zIndex: {
         "min": "-1"
+      },
+      left: {
+        "min": "-10%"
+      },
+      right: {
+        "min": "-10%"
+      },
+      height: {
+        "120": "30rem"
       }
 
     },
