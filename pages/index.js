@@ -4,19 +4,13 @@ import { motion, useAnimation } from "framer-motion"
 const Index = () => {
 
     const [isCollapsed, setCollapsed] = useState(false)
-    const [animPos, setAnimPos] = useState({ x: 0, y: 0 })
-    const [animSize, setAnimSize] = useState(0)
     const [isLanding, setLanding] = useState(true)
+    const [atItem, setItem] = useState(0)
+    const [menuBar, setMenuBar] = useState({ x: 0, w: 0 })
     const menuControl = useAnimation()
-    const logoControl = useAnimation()
-    const logoRef = useRef()
-
-
-    function getQuadraticBezierXYatPercent(startPt, controlPt, endPt, percent) {
-        var x = Math.pow(1 - percent, 2) * startPt.x + 2 * (1 - percent) * percent * controlPt.x + Math.pow(percent, 2) * endPt.x;
-        var y = Math.pow(1 - percent, 2) * startPt.y + 2 * (1 - percent) * percent * controlPt.y + Math.pow(percent, 2) * endPt.y;
-        return ({ x: x, y: y });
-    }
+    const logoSVGControl = useAnimation()
+    const logoContainerControl = useAnimation()
+    const itemsContainerRef = useRef()
 
     const menuContainer = {
         hidden: {
@@ -25,8 +19,9 @@ const Index = () => {
         show: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.25,
-                delayChildren: .1
+                staggerChildren: 0.20,
+                delayChildren: .1,
+                staggerDirection: -1
             }
         }
     }
@@ -40,71 +35,59 @@ const Index = () => {
             opacity: 1,
             x: 0,
             type: "spring",
-            stiffness: 50,
+            stiffness: 60,
         }
+    }
+
+    const logoContainer = {
+        initial: {
+            opacity: 1,
+            left: "50%",
+            top: "50%",
+            width: "60vw",
+            height: "60vw",
+            x: "-50%",
+            y: "-50%",
+            position: "fixed"
+        },
+        animate: {
+            opacity: 1,
+            left: 20,
+            top: 20,
+            width: 44,
+            height: 44,
+            x: 0,
+            y: 0,
+            position: "fixed",
+            transition: {
+                type: "spring",
+                stiffness: 20
+            }
+        },
     }
 
     useEffect(() => {
 
         const landingAnimation = async () => {
-            animationInit()
-            await logoControl.start({
+            await logoSVGControl.start({
                 strokeDashoffset: 0,
                 transition: {
                     type: "spring",
-                    stiffness: 20,
+                    stiffness: 15,
                     delay: 2
                 }
             })
+            await logoContainerControl.start("animate")
             await menuControl.start("show")
-            frame()
+            setLanding(false)
         }
 
         const resizeHandler = () => {
-            if (window.innerWidth < 800) setCollapsed(true)
+            if (window.innerWidth < 900) setCollapsed(true)
             else setCollapsed(false)
         }
 
-        let percentage, min, max, size, pos, i, till
-        const animationInit = () => {
-            // animation position calculation
-            i = 0
-            till = 100
-            percentage = (i / till)
-            min = 44
-            max = 600
-            size = (min + max) - (min + ((max - min) * percentage))
 
-            pos = getQuadraticBezierXYatPercent(
-                { x: ((window.innerWidth / 2) - (size / 2)), y: ((window.innerHeight / 2) - (size / 2)) },
-                { x: ((window.innerWidth / 2) - (size / 2)), y: 80 },
-                { x: 20, y: 20 },
-                percentage
-            )
-            setAnimSize(size)
-            setAnimPos({ ...animPos, x: `${pos.x}px`, y: `${pos.y}px` })
-        }
-
-        const frame = () => {
-            percentage = (i / till)
-            size = (min + max) - (min + ((max - min) * percentage))
-            pos = getQuadraticBezierXYatPercent(
-                { x: ((window.innerWidth / 2) - (size / 2)), y: ((window.innerHeight / 2) - (size / 2)) },
-                { x: ((window.innerWidth / 2) - (size / 2)), y: 80 },
-                { x: 20, y: 20 },
-                percentage
-            )
-
-            setAnimPos({ ...animPos, x: `${pos.x}px`, y: `${pos.y}px` })
-            setAnimSize(size)
-
-            if (i < till) {
-                i += 1
-                window.requestAnimationFrame(frame)
-            } else {
-                setLanding(false)
-            }
-        }
 
         resizeHandler()
         window.addEventListener("resize", resizeHandler)
@@ -114,25 +97,30 @@ const Index = () => {
         }
     }, [])
 
+    useEffect(() => {
+        let items = itemsContainerRef.current.children
+        let posX = 0;
+        let atWidth = 0;
+        for (let i = 0; i <= atItem; i++) {
+            posX += items[i].offsetWidth
+            if (i == atItem) {
+                atWidth = items[i].offsetWidth
+            }
+        }
+        // console.log(posX, atWidth)
+        setMenuBar({ ...menuBar, x: (posX - atWidth), w: atWidth })
+    }, [atItem])
+
     return (
         <>
-            <section style={{ height: "200vh", position: isLanding ? "fixed" : "relative" }} className="bg-snow">
-                <header className={`fixed l-0 t-0 w-full bg-snow transition-shadow ${isLanding ? "" : "shadow"} `}>
+            <section style={{ height: 84 }}>
+                <header className="fixed l-0 t-0 w-full bg-snow transition-shadow z-50">
                     <nav className="p-5 flex space-between">
                         <div className="mr-auto" style={{ height: "44px" }}>
-                            <motion.div style={{
-                                position: isLanding ? "absolute" : "relative",
-                                left: isLanding ? animPos.x : "auto",
-                                top: isLanding ? animPos.y : "auto",
-                                width: animSize,
-                                height: animSize,
-                                transition: "ease"
-                            }}
-                                ref={logoRef}
-                                // transition={{
-                                //     type: "spring",
-                                //     stiffness: 1,
-                                // }}
+                            <motion.div
+                                variants={logoContainer}
+                                initial="initial"
+                                animate={logoContainerControl}
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +138,7 @@ const Index = () => {
                                             strokeDasharray: 85,
                                             strokeDashoffset: 85,
                                         }}
-                                        animate={logoControl}
+                                        animate={logoSVGControl}
                                         d="M 4 8 L 18 8 a 2 2 0 1 0 -2 -2 L 16 18 a 2 2 0 1 0 2 -2 L 6 16 a 2 2 0 1 0 2 2 L 8 4 L 8 8"
                                     />
                                 </svg>
@@ -159,37 +147,63 @@ const Index = () => {
                         {!isCollapsed ? (
                             <motion.ul
                                 variants={menuContainer}
-                                initial="hidden"
-                                animate={menuControl}
-                                className="flex items-center uppercase"
+                                initial={"hidden"}
+                                animate={isLanding ? menuControl : "show"}
+                                className="flex items-center relative"
+                                ref={itemsContainerRef}
                             >
-                                <motion.li variants={menuItem} className="px-4"><a href="">Home</a></motion.li>
-                                <motion.li variants={menuItem} className="px-4"><a href="">Works</a></motion.li>
-                                <motion.li variants={menuItem} className="px-4"><a href="">About</a></motion.li>
-                                <motion.li variants={menuItem} className="px-4"><a href="">Contact</a></motion.li>
-                                <motion.li variants={menuItem} className="px-4"><a href="">Blog</a></motion.li>
-                                <motion.li variants={menuItem} className="px-4"><a href="">Curriculum Vitae</a></motion.li>
+                                <motion.li variants={menuItem} ><a href="" className="px-4 py-2">Home</a></motion.li>
+                                <motion.li variants={menuItem} onMouseEnter={() => setItem(1)} onMouseLeave={() => setItem(0)}><a href="" className="px-4 py-2">Works</a></motion.li>
+                                <motion.li variants={menuItem} onMouseEnter={() => setItem(2)} onMouseLeave={() => setItem(0)}><a href="" className="px-4 py-2">About</a></motion.li>
+                                <motion.li variants={menuItem} onMouseEnter={() => setItem(3)} onMouseLeave={() => setItem(0)}><a href="" className="px-4 py-2">Contact</a></motion.li>
+                                <motion.li variants={menuItem} onMouseEnter={() => setItem(4)} onMouseLeave={() => setItem(0)}><a href="" className="px-4 py-2">Blog</a></motion.li>
+                                <motion.li variants={menuItem} onMouseEnter={() => setItem(5)} onMouseLeave={() => setItem(0)}><a href="" className="px-4 py-2">Curriculum Vitae</a></motion.li>
+                                {!isLanding && (
+                                    <hr className="absolute w-1 bottom-0 transition-all" style={{ width: menuBar.w, left: menuBar.x }} />
+                                )}
                             </motion.ul>
                         ) : (
                             <motion.button
                                 variants={menuContainer}
-                                initial="hidden"
-                                animate={menuControl}
-                            // className="ml-auto"
+                                initial={"hidden"}
+                                animate={isLanding ? menuControl : "show"}
                             >
-                                <img src="/menu.svg" />
+                                <motion.img variants={menuItem} src="/menu.svg" />
                             </motion.button>
                         )}
                     </nav>
                 </header>
             </section>
 
-            <section style={{ display: isLanding ? "none" : "block" }}>
-                <header>
-                    <h1>Beau Patrick Dekker</h1>
-                </header>
-            </section>
+            {!isLanding && (
+            <motion.section 
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
 
+            >
+                <header className="relative z-0 xl:py-5 py-3 flex items-center flex-col mt-10">
+                    <motion.div
+                        initial={{
+                            height: 0,
+                            x: "50%"
+                        }}
+                        animate={{
+                            height: "100%",
+                            x: 0,
+                            transition: {
+                                type: "spring",
+                            }
+                        }}
+                        className="bg-blue block absolute right-0 top-0 bottom-0 my-auto"
+                        style={{ width: `calc(100% - 20px)` }}
+                    ></motion.div>
+                    <h1 className="md:text-6xl xl:text-8xl sm:text-4xl text-2xl relative">Beau Patrick Dekker</h1>
+                    <span className="relative xl:text-3xl font-light">Junior Fullstack Developer</span>
+
+                </header>
+            </motion.section>
+
+            )}
             <section style={{ height: "200vh", display: isLanding ? "none" : "block" }}>
                 <h2>works</h2>
             </section>
