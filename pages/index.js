@@ -61,7 +61,7 @@ const Index = () => {
             position: "fixed",
             transition: {
                 type: "spring",
-                stiffness: 20
+                stiffness: 30
             }
         },
     }
@@ -73,11 +73,11 @@ const Index = () => {
                 strokeDashoffset: 0,
                 transition: {
                     type: "spring",
-                    stiffness: 15,
+                    stiffness: 10,
                     delay: 2
                 }
             })
-            await logoContainerControl.start("animate")
+            logoContainerControl.start("animate")
             await menuControl.start("show")
             setLanding(false)
         }
@@ -185,13 +185,14 @@ const Index = () => {
                     <motion.div
                         initial={{
                             height: 0,
-                            x: "50%"
+                            x: "30%"
                         }}
                         animate={{
                             height: "100%",
                             x: 0,
                             transition: {
                                 type: "spring",
+                                stiffnes: 60
                             }
                         }}
                         className="bg-blue block absolute right-0 top-0 bottom-0 my-auto"
