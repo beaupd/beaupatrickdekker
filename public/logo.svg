@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="iconlogo" width="20" height="20" viewBox="2 2 20 20" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <style>
+        path {
+            stroke: #000;
+        }
+        @media (prefers-color-scheme: dark) {
+            path { stroke: white; }
+        }
+    </style>
+    <path d="M 4 8 L 18 8 a 2 2 0 1 0 -2 -2 L 16 18 a 2 2 0 1 0 2 -2 L 6 16 a 2 2 0 1 0 2 2 L 8 4 L 8 8" />
+</svg>
