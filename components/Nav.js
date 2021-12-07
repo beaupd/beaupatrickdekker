@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react"
 import { motion, useAnimation } from "framer-motion"
 import ToggleButton from "./utilities/ToggleButton"
 import MenuButton from "./utilities/MenuButton"
+import Container from "./Container"
 
 const menu = {
     hidden: {
@@ -32,72 +33,69 @@ const menu = {
 }
 
 const Nav = () => {
+    const [isSticky, setSticky] = useState(false)
+    const [placeholderHeight, setPlaceholder] = useState(0)
     const navRef = useRef()
-    const [navHeight, setNavHeight] = useState(0)
-    const [isCollapsed, setCollapsed] = useState(false)
+    const navHeight = 66
 
     // on mount
     useEffect(() => {
-        const resizeHandler = () => {
-            if (window.innerWidth < 900) setCollapsed(true)
-            else setCollapsed(false)
-            setNavHeight(navRef.current.offsetHeight)
+        const navY = navRef.current.offsetTop
+        const scrollHandler = () => {
+            if (window.pageYOffset > navY) {
+                setSticky(true)
+                setPlaceholder(navRef.current.style.height)
+                console.log(window.pageYOffset, navY)
+            }
+            else {
+                setSticky(false)
+            }
         }
-        resizeHandler()
-        window.addEventListener("resize", resizeHandler)
-        return () => window.removeEventListener("resize", resizeHandler)
+
+        window.addEventListener("scroll", scrollHandler)
+        return () => window.removeEventListener("scroll", scrollHandler)
 
     }, [])
 
     return (
-        <nav className="flex justify-between items-center w-full" ref={navRef}>
-            <a href="" className="relative">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={navHeight}
-                    height={navHeight}
-                    viewBox="0 0 24 24"
-                    strokeWidth="1"
-                    stroke="#000000"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                >
-                    <path
-                        d="M 4 8 L 18 8 a 2 2 0 1 0 -2 -2 L 16 18 a 2 2 0 1 0 2 -2 L 6 16 a 2 2 0 1 0 2 2 L 8 4 L 8 8"
-                    />
-                </svg>
-            </a>
-
-            {!isCollapsed ? (
-                <motion.ul
-                    variants={menu}
-                    initial={"hidden"}
-                    animate={"show"}
-                    className="flex items-center relative font-medium"
-                >
-                    
-                    <motion.li variants={menu.item}><a href="" className="px-4 text-lg py-4">Home</a></motion.li>
-                    <motion.li variants={menu.item}><a href="" className="px-4 text-lg py-4">Works</a></motion.li>
-                    <motion.li variants={menu.item}><a href="" className="px-4 text-lg py-4">About</a></motion.li>
-                    <motion.li variants={menu.item}><a href="" className="px-4 text-lg py-4">Contact</a></motion.li>
-                    <motion.li variants={menu.item}><a href="" className="px-4 text-lg py-4">Blog</a></motion.li>
-                    <motion.li variants={menu.item}><a href="" className="px-4 text-lg py-4">Curriculum Vitae</a></motion.li>
-                    <motion.li variants={menu.item} className="flex items-center"><ToggleButton/></motion.li>
-                </motion.ul>
-            ) : (
-                <motion.ul
-                    variants={menu}
-                    initial={"hidden"}
-                    animate={"show"}
-                    className="flex items-center relative font-medium"
-                >
-                    <motion.li variants={menu.item} className="flex items-center"><ToggleButton size={navHeight}/></motion.li>
-                    <motion.li variants={menu.item} className="flex items-center cursor-pointer"><MenuButton size={navHeight}/></motion.li>
-                </motion.ul>
+        <>
+            {isSticky && (
+                <div style={{ height: 66 }}></div>
             )}
+            <nav className={`w-full bg-light dark:bg-dark top-0 left-0 ${isSticky ? "fixed" : "relative"}`} ref={navRef}>
+                <Container className="flex justify-between items-center bg-light dark:bg-dark">
+                    <a href="" className="relative">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width={navHeight}
+                            height={navHeight}
+                            viewBox="0 0 24 24"
+                            strokeWidth="1"
+                            // stroke="#000000"
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="stroke-current text-dark dark:text-light"
+                        >
+                            <path
+                                d="M 4 8 L 18 8 a 2 2 0 1 0 -2 -2 L 16 18 a 2 2 0 1 0 2 -2 L 6 16 a 2 2 0 1 0 2 2 L 8 4 L 8 8"
+                            />
+                        </svg>
+                    </a>
 
-        </nav>
+
+                    <motion.ul
+                        variants={menu}
+                        initial={"hidden"}
+                        animate={"show"}
+                        className="flex items-center relative font-medium"
+                    >
+                        <motion.li variants={menu.item} className="flex items-center"><ToggleButton size={navHeight} /></motion.li>
+                        <motion.li variants={menu.item} className="flex items-center cursor-pointer"><MenuButton size={navHeight} /></motion.li>
+                    </motion.ul>
+                </Container>
+            </nav>
+        </>
     )
 }
 
