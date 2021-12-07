@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    transition: .1s ease;
+:root {
+    --light-color: #FDFDFD;
+    --dark-color: #3C3D41;
+    --black-color: #050505;
+    --bordeaux-color: #3f0d0c;
+    --teal-color: #62929E;
 }
 
 html, body {
@@ -11,7 +15,7 @@ html, body {
     margin: 0;
     box-sizing: border-box;
     font-family: "Work Sans", sans-serif;
-    background: #FDFDFD;
+    background: var(--light-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
@@ -19,5 +23,5 @@ html, body {
 }
 
 html.dark {
-    background: #3C3D41;
+    background: var(--dark-color);
 }

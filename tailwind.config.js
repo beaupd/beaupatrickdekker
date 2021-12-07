@@ -10,9 +10,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        dark: "#3C3D41",
-        light: "#FDFDFD",
-        black: "#050505"
+        dark: "var(--dark-color)",
+        light: "var(--light-color)",
+        black: "var(--black-color)",
       },
       letterSpacing: {
         tightst: "-0.5rem"
@@ -27,9 +27,9 @@ module.exports = {
       },
       zIndex: {
         "min": "-1"
-      }
+      },
+      
     },
-    
   },
   variants: {
     extend: {},

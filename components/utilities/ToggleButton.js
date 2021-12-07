@@ -1,6 +1,23 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
+const Circle = {
+    light: {
+        cx: 8,
+        transition: {
+            type: "spring",
+            stiffness: 100
+        }
+    },
+    dark: {
+        cx: 16,
+        transition: {
+            type: "spring",
+            stiffness: 100
+        }
+    }
+}
+
 const ToggleButton = ({ size }) => {
     const [isDark, setDark] = useState(false)
     const [isHovered, setHovered] = useState(false)
@@ -23,7 +40,7 @@ const ToggleButton = ({ size }) => {
                 width={size}
                 height={size}
                 viewBox="0 0 24 24"
-                strokeWidth="1"
+                strokeWidth="0.7"
                 // stroke="#1D2832"
                 fill="none"
                 strokeLinecap="round"
@@ -31,7 +48,7 @@ const ToggleButton = ({ size }) => {
                 className="stroke-current text-dark dark:text-light"
             >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <circle cx={isDark ? isHovered ? "16" : "8" : isHovered ? "8" : "16"} cy="12" r="3" fill="currentColor" />
+                <motion.circle variants={Circle} animate={isDark ? isHovered ? "dark" : "light" : isHovered ? "light" : "dark" } initial={{cx:8}} cy="12" r="3" fill="currentColor" />
                 <rect x="2" y="6" width="20" height="12" rx="6" />
             </svg>
         </button>
