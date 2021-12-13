@@ -32,7 +32,6 @@ const ToggleButton = ({ size }) => {
     useEffect(()=>{
         toggleDark()
     },[])
-    
 
     return (
         <button className="" onClick={toggleDark} onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
@@ -48,7 +47,7 @@ const ToggleButton = ({ size }) => {
                 className="stroke-current text-dark dark:text-light"
             >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <motion.circle variants={Circle} animate={isDark ? isHovered ? "dark" : "light" : isHovered ? "light" : "dark" } initial={{cx:8}} cy="12" r="3" fill="currentColor" />
+                <motion.circle variants={Circle} animate={isDark ?  "dark" : "light" } initial={{cx:8}} cy="12" r="3" fill="currentColor" />
                 <rect x="2" y="6" width="20" height="12" rx="6" />
             </svg>
         </button>

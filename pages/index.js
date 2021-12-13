@@ -45,7 +45,7 @@ const Index = () => {
                         <motion.span variants={LandingHeader.word} initial="hidden" animate="show" className="block pb-3" style={{lineHeight: 0.7}}>
                             {(Array.from("Beau Patrick Dekker")).map((l, i) => {
                                 if (l == " "){
-                                    return (<br/>)
+                                    return (<br key={i}/>)
                                 } else {
                                 return (
                                     <motion.span
