@@ -1,17 +1,15 @@
-import {Heading1, Heading2, Heading3} from "../components/headings/"
-import {Container} from "../components/layouts/"
+import { Heading1, Heading2, Heading3 } from "../components/headings";
+import { Container } from "../components/layouts";
+import Lander from "../components/lander/Lander";
 
 const Index = () => {
     return (
-        <Container>
-            <header>
-                <Heading1>Beau<br/> Patrick<br/> Dekker</Heading1>
-            </header>
+        <>
+            <Lander />
 
+            <Container className="h-screen"></Container>
+        </>
+    );
+};
 
-        </Container>
-        
-    )
-}
-
-export default Index
+export default Index;

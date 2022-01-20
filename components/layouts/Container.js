@@ -1,8 +1,5 @@
-const Container = ({children, className=""}) => {
-    
-    return (
-        <section className={`xl:mx-40 ${className}`}>{children}</section>
-    )
-}
+const Container = ({ children, className = "" }) => {
+    return <section className={`${className}`}>{children}</section>;
+};
 
-export default Container
+export default Container;

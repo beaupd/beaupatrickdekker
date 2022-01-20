@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-    --black: #050505;
-    --white: #FDFDFD;
-    --primary: #FF6F59;
+    --dark: #050505;
+    --light: #FDFDFD;
+    --theme: #B80C09;
 }
 
 
@@ -23,6 +23,6 @@ html, body {
 }
 
 ::selection {
-    background: var(--black);
-    color: var(--white);
+    background: var(--theme);
+    color: var(--light);
 }

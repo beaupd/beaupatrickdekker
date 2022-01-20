@@ -4,9 +4,11 @@
   "description": "Beau Dekker's portfolio website",
   "main": "index.js",
   "dependencies": {
+    "@react-three/fiber": "^7.0.24",
     "next": "^12.0.7",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "three": "^0.136.0"
   },
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
