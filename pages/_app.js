@@ -1,7 +1,20 @@
+import Head from "next/head"
+import {useRouter} from "next/router"
 import "../styles/global.css";
 
-function MyApp({ Component, pageProps }) {
-    return <Component {...pageProps} />;
+
+function Website({ Component, pageProps }) {
+    const router = useRouter()
+    const {location} = router.query
+    return (
+        <>
+            <Head>
+                <title>Beau Patrick Dekker - {location}</title>
+            </Head>
+            <Component {...pageProps} />
+        </>
+    ) 
+    
 }
 
 // Only uncomment this method if you have blocking data requirements for
@@ -16,4 +29,4 @@ function MyApp({ Component, pageProps }) {
 //   return { ...appProps }
 // }
 
-export default MyApp;
+export default Website;

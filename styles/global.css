@@ -20,9 +20,10 @@ html, body {
     -moz-osx-font-smoothing: grayscale;
     text-rendering: geometricPrecision;
     text-size-adjust: auto;
+    background: var(--black);
 }
 
 ::selection {
-    background: var(--black);
-    color: var(--white);
+    background: var(--white);
+    color: var(--black);
 }
