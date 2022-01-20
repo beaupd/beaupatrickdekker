@@ -6,10 +6,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        dark: "var(--dark)",
-        light: "var(--white)",
-        primary: "var(--primary)"
-      },
+        dark: {
+            DEFAULT: "var(--dark)",
+        },
+        light: {
+            DEFAULT: "var(--light)",
+        },
+        theme: {
+            DEFAULT: "var(--theme)",
+        },
+    },
       backgroundColor: {
         dark: "#050505",
       },
@@ -31,6 +37,5 @@ module.exports = {
         }]
       }
     },
-  },
-  plugins: [],
-}
+    plugins: [],
+};

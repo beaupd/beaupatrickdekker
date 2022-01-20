@@ -1,6 +1,6 @@
-import { Heading1, Heading2, Heading3 } from "../components/headings/"
-import { Container, Main } from "../components/layouts/"
-import {TextLink, Button} from "../components/navs/"
+import { Heading1, Heading2, Heading3 } from "../components/headings";
+import { Container } from "../components/layouts";
+import Lander from "../components/lander/Lander";
 
 const Home = () => {
     return (
