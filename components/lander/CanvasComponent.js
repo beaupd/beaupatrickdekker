@@ -9,7 +9,7 @@ const CanvasComponent = () => {
     const intensity = 50; // intensity of y sinusoidal ::: 50
     const difference = 1; // intensity of the difference between particles ::: 1
     const lightZ = 5; // z position of point light ::: 1
-    const xWaves = false; // 
+    const xWaves = true; // 
 
     const Particles = ({ temp = new THREE.Object3D() }) => {
         const mesh = useRef();
