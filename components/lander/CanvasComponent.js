@@ -3,13 +3,14 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 const CanvasComponent = () => {
-    const size = 11; // size of particle space ::: 12
-    const padding = 400; // padding around particles ::: 400
-    const scale = 0.01; // scale of particles ::: 0.01
-    const intensity = 50; // intensity of y sinusoidal ::: 50
-    const difference = 1; // intensity of the difference between particles ::: 1
-    const lightZ = 5; // z position of point light ::: 1
-    const xWaves = true; // 
+    const size = 8; // size of particle space ::: 12
+    const padding = 200; // padding around particles ::: 400
+    const scale = 0.007; // scale of particles ::: 0.01
+    const intensity = 30; // intensity of y sinusoidal ::: 50
+    const difference = 6; // intensity of the difference between particles ::: 1
+    const lightZ = 10; // z position of point light ::: 1
+    const xWaves = true; // sinosoidal x aswell
+    const color = "#B80C09" // # B80C09
 
     const Particles = ({ temp = new THREE.Object3D() }) => {
         const mesh = useRef();
@@ -110,7 +111,7 @@ const CanvasComponent = () => {
         return (
             <instancedMesh ref={mesh} scale={scale} args={[null, null, w * h]}>
                 <circleGeometry />
-                <meshStandardMaterial color="#B80C09" />
+                <meshStandardMaterial color={color} />
             </instancedMesh>
         );
     };

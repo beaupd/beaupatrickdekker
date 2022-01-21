@@ -30,7 +30,7 @@ const Lander = () => {
         <Container className="h-screen w-full bg-dark p-20">
             {canvasState}
 
-            <header>
+            {/* <header>
                     <Heading1 className="text-light relative">Beau<br /> Patrick<br /> Dekker</Heading1>
                     <p className="text-light text-4xl font-light tagline relative">Junior Fullstack Developer</p>
                 </header>
@@ -40,11 +40,11 @@ const Lander = () => {
                         I'm currently a front-end developer at <TextLink href="https://www.unica.nl/">Unica</TextLink>, 
                         a student at <TextLink href="https://fdnd.nl/">FDND</TextLink>(Front-end design & development), 
                         a traditional chinese medicine student at <TextLink href="https://ohm-academy.info/">OHM-Academy</TextLink> and I do anything web freelance.<br/><br/>
-                        I specialize in transforming ideas or designs into code. I love making fullstack web-apps for startups or small companies with great idea's and who love interactivity on the web.
+                        I specialize in transforming ideas or designs into code. I love making fullstack web-apps for startups or small companies with great idea's and interactivity on the web.
                     </p>
 
                     <Button className="text-light mt-8 relative">Contact me</Button>
-                </main>
+                </main> */}
 
             <div
                 className={`${
