@@ -28,27 +28,27 @@ const CanvasComponent = ({ config = defaultConfig }) => {
     // camera
     // camera.lookAt(0,0,0)
 
-    const Camera = () => {
-        const { mouse } = useThree();
+    // const Camera = () => {
+    //     const { mouse } = useThree();
 
-        useFrame(({ clock, camera }) => {
-            // camera.position.z = 10 + Math.sin(clock.getElapsedTime()) * 3;
-            camera.rotation.y = THREE.MathUtils.lerp(
-                camera.rotation.y,
-                -(mouse.x * Math.PI) / 100,
-                0.1
-            );
-            camera.rotation.x = THREE.MathUtils.lerp(
-                camera.rotation.x,
-                (mouse.y * Math.PI) / 100,
-                0.1
-            );
-            // camera.position.x = mouse.x * 0.3;
-            // camera.position.y = mouse.y * 0.3;
-            // camera.position.z = 6;
-        });
-        return null;
-    };
+    //     useFrame(({ clock, camera }) => {
+    //         // camera.position.z = 10 + Math.sin(clock.getElapsedTime()) * 3;
+    //         camera.rotation.y = THREE.MathUtils.lerp(
+    //             camera.rotation.y,
+    //             -(mouse.x * Math.PI) / 100,
+    //             0.1
+    //         );
+    //         camera.rotation.x = THREE.MathUtils.lerp(
+    //             camera.rotation.x,
+    //             (mouse.y * Math.PI) / 100,
+    //             0.1
+    //         );
+    //         // camera.position.x = mouse.x * 0.3;
+    //         // camera.position.y = mouse.y * 0.3;
+    //         // camera.position.z = 6;
+    //     });
+    //     return null;
+    // };
 
     const Particles = ({ temp = new THREE.Object3D() }) => {
         const mesh = useRef();
@@ -130,7 +130,7 @@ const CanvasComponent = ({ config = defaultConfig }) => {
         <Canvas style={{ position: "absolute", left: 0, top: 0 }}>
             <pointLight position={[0, 0, lightZ]} />
             <Particles />
-            <Camera />
+            {/* <Camera /> */}
         </Canvas>
     );
 };
